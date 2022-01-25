@@ -33,7 +33,7 @@ func main() {
 ### Public market data
 
 - [x] Get server time
-- [ ] Get system status
+- [x] Get system status
 - [ ] Get asset info
 - [ ] Get tradable asset pairs
 - [ ] Get ticker information
@@ -62,10 +62,10 @@ func main() {
 
 ### Private user trading
 
-- [ ] Add standard order
-- [ ] Cancel open order
-- [ ] Cancel all open orders
-- [ ] Cancel all orders after
+- [ ] Add order
+- [ ] Cancel order
+- [ ] Cancel all orders
+- [ ] Cancel all orders after X
 
 ### Private user funding
 
@@ -76,7 +76,15 @@ func main() {
 - [ ] Withdraw funds
 - [ ] Get status of recent withdrawals
 - [ ] Request withdrawal cancelation
-- [ ] Wallet Transfer
+- [ ] Request wallet Transfer
+
+### Private user staking
+
+- [ ] Stake asset
+- [ ] Unstake asset
+- [ ] List of stakeable assets
+- [ ] Get pending staking transactions
+- [ ] List of staking transactions
 
 ## References
 
