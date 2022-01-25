@@ -1,11 +1,8 @@
 package kraken
 
 import (
-	"net/url"
 	"time"
 )
-
-type Payload url.Values
 
 type Status string
 
@@ -14,6 +11,12 @@ const (
 	Maintenance Status = "maintenance"
 	CancelOnly  Status = "cancel_only"
 	PostOnly    Status = "post_only"
+)
+
+type AssetClass string
+
+const (
+	Currency AssetClass = "currency"
 )
 
 type ServerTime struct {
@@ -28,4 +31,15 @@ type SystemStatus struct {
 	Status Status `json:"status"`
 	// Timestamp: Current timestamp (RFC3339)
 	Timestamp *time.Time `json:"timestamp"`
+}
+
+type AssetInfo struct {
+	// Altname: Alternative name
+	Altname string `json:"altname"`
+	// AssetClass: Asset class
+	AssetClass AssetClass `json:"aclass"`
+	// Decimals: Scaling decimal places for record keeping
+	Decimals int64 `json:"decimals"`
+	// DisplayDecimals: Scaling decimal places for output display
+	DisplayDecimals int64 `json:"display_decimals"`
 }
