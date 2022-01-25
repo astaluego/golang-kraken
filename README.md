@@ -76,7 +76,7 @@ func main() {
 - [ ] Withdraw funds
 - [ ] Get status of recent withdrawals
 - [ ] Request withdrawal cancelation
-- [ ] Request wallet Transfer
+- [ ] Request wallet transfer
 
 ### Private user staking
 
@@ -85,6 +85,14 @@ func main() {
 - [ ] List of stakeable assets
 - [ ] Get pending staking transactions
 - [ ] List of staking transactions
+
+## Generated code
+
+In the `generate` folder, you will find the source code to update `assets.go` and `asset_pairs.go`. Two calls on the Kraken API are made in order to get the list of the assets and asset pairs available on the plateform. Then the code is generated through the text/template feature of Golang.
+
+The aim is to have a list of assets and asset pairs in Golang constants to simplify the usage of the library.
+
+NB: `assets.go` and `asset_pairs.go` should not be manually edited.
 
 ## References
 
