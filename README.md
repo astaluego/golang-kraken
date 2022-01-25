@@ -20,11 +20,22 @@ import (
 
 func main() {
     client := kraken.New()
+
+    // Public calls
     time, err := client.ServerTime()
     if err != nil {
         fmt.Println(err)
     }
     fmt.Println(time)
+
+    assets, err := client.Assets(kraken.AssetsConfig{
+        AssetClass: kraken.Currency,
+        Assets:     []kraken.Asset{kraken.XBT},
+    })
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println(assets)
 }
 ```
 
@@ -34,7 +45,7 @@ func main() {
 
 - [x] Get server time
 - [x] Get system status
-- [ ] Get asset info
+- [x] Get asset info
 - [ ] Get tradable asset pairs
 - [ ] Get ticker information
 - [ ] Get OHLC data
@@ -88,7 +99,7 @@ func main() {
 
 ## Generated code
 
-In the `generate` folder, you will find the source code to update `assets.go` and `asset_pairs.go`. Two calls on the Kraken API are made in order to get the list of the assets and asset pairs available on the plateform. Then the code is generated through the text/template feature of Golang.
+In the `generate/` folder, you will find the source code to update `assets.go` and `asset_pairs.go`. Two calls on the Kraken API are made in order to get the list of the assets and asset pairs available on the plateform. Then the code is generated through the text/template feature of Golang.
 
 The aim is to have a list of assets and asset pairs in Golang constants to simplify the usage of the library.
 
