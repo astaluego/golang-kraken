@@ -1,3 +1,5 @@
+//go:generate go run generate/generate.go generate/template_asset.go
+
 package kraken
 
 import (
