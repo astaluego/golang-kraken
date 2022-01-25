@@ -92,7 +92,7 @@ In the `generate` folder, you will find the source code to update `assets.go` an
 
 The aim is to have a list of assets and asset pairs in Golang constants to simplify the usage of the library.
 
-NB: `assets.go` and `asset_pairs.go` should not be manually edited.
+NB: `assets.go` and `asset_pairs.go` should not be manually edited. To update these files, run the `make generate` command.
 
 ## References
 
