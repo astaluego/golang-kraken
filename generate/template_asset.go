@@ -35,7 +35,7 @@ type AssetPair string
 
 const (
 {{- range $key, $value := .AssetPairs }}
-	{{ $value.WSName }} AssetPair = "{{ $key }}"
+	{{ $value.WSname }} AssetPair = "{{ $key }}"
 {{- end }}
 )
 `))
