@@ -51,7 +51,7 @@ func main() {
 - [x] Get tradable asset pairs
 - [ ] Get ticker information
 - [ ] Get OHLC data
-- [ ] Get order book
+- [x] Get order book
 - [x] Get recent trades
 - [x] Get recent spread data
 

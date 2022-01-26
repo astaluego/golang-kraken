@@ -41,6 +41,10 @@ func (payload Payload) OptAssetPairs(assetPairs ...AssetPair) {
 	payload["pair"] = []string{strings.Join(list, ",")}
 }
 
+func (payload Payload) OptCount(count int64) {
+	payload["count"] = []string{strconv.FormatInt(count, 10)}
+}
+
 func (payload Payload) OptInformations(information Information) {
 	if string(information) == "" {
 		return
