@@ -113,6 +113,22 @@ type Fee struct {
 	Percent decimal.Decimal `json:"percent"`
 }
 
+type OrderBook struct {
+	// Asks
+	Asks []OrderBookEntry `json:"asks"`
+	// Bids
+	Bids []OrderBookEntry `json:"bids"`
+}
+
+type OrderBookEntry struct {
+	// Price
+	Price decimal.Decimal `json:"price"`
+	// Volume
+	Volume decimal.Decimal `json:"volume"`
+	// Time
+	Time time.Time `json:"time"`
+}
+
 type TradeData struct {
 	// Price
 	Price decimal.Decimal `json:"price"`

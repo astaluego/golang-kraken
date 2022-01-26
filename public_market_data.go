@@ -140,6 +140,72 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 	return &response, nil
 }
 
+type OrderBookConfig struct {
+	// AssetPair is required
+	AssetPair AssetPair
+	// Count is optional
+	Count int64
+}
+
+// OrderBook
+// https://docs.kraken.com/rest/#operation/getOrderBook
+func (c *Client) OrderBook(config OrderBookConfig) (*OrderBook, error) {
+	if config.AssetPair == "" {
+		return nil, fmt.Errorf("AssetPair is required")
+	}
+
+	payload := Payload{}
+	payload.OptAssetPairs(config.AssetPair)
+	payload.OptCount(config.Count)
+
+	var resp interface{}
+	err := c.doRequest("Depth", false, url.Values(payload), &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	response := OrderBook{}
+
+	for _, value := range resp.(map[string]interface{}) {
+		for side, array := range value.(map[string]interface{}) {
+			orderBookEntries := []OrderBookEntry{}
+			for _, a := range array.([]interface{}) {
+				obe := a.([]interface{})
+
+				if len(obe) == 3 {
+					t := time.Unix(int64(obe[2].(float64)), 0)
+
+					price, err := decimal.NewFromString(obe[0].(string))
+					if err != nil {
+						continue
+					}
+
+					volume, err := decimal.NewFromString(obe[1].(string))
+					if err != nil {
+						continue
+					}
+
+					orderBookEntry := OrderBookEntry{
+						Price:  price,
+						Volume: volume,
+						Time:   t,
+					}
+					orderBookEntries = append(orderBookEntries, orderBookEntry)
+				}
+			}
+
+			if side == "asks" {
+				response.Asks = orderBookEntries
+			} else if side == "bids" {
+				response.Bids = orderBookEntries
+			}
+		}
+		break
+	}
+
+	return &response, nil
+}
+
 type RecentTradesConfig struct {
 	// AssetPair is required
 	AssetPair AssetPair
