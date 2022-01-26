@@ -43,7 +43,7 @@ type ResponseAssetPairs struct {
 
 type AssetPairsInfo struct {
 	Altname string `json:"altname"`
-	WSName  string `json:"wsname"`
+	WSname  string `json:"wsname"`
 }
 
 func main() {
@@ -135,16 +135,16 @@ func getAssetPairs() (*ResponseAssetPairs, error) {
 
 	// Clean data
 	for key, value := range responseAssetPairs.Result {
-		if value.WSName == "" {
+		if value.WSname == "" {
 			log.Info().Msgf("AssetPair: key removed %s (%s: %s)", key, value.Altname, err.Error())
 			delete(responseAssetPairs.Result, key)
 			continue
 		}
 
-		value.WSName = strings.ReplaceAll(value.WSName, "/", "_")
-		value.WSName, err = rewriteAsset(value.WSName)
+		value.WSname = strings.ReplaceAll(value.WSname, "/", "_")
+		value.WSname, err = rewriteAsset(value.WSname)
 		if err != nil {
-			log.Info().Msgf("AssetPair: key removed %s (%s: %s)", key, value.WSName, err.Error())
+			log.Info().Msgf("AssetPair: key removed %s (%s: %s)", key, value.WSname, err.Error())
 			delete(responseAssetPairs.Result, key)
 			continue
 		}
