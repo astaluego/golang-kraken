@@ -30,6 +30,20 @@ const (
 	MarginInformations   Information = "margin"
 )
 
+type Interval string
+
+const (
+	Interval1min  Interval = "1"
+	Interval5min  Interval = "5"
+	Interval15min Interval = "15"
+	Interval30min Interval = "30"
+	Interval1h    Interval = "60"
+	Interval4h    Interval = "240"
+	Interval1d    Interval = "1440"
+	Interval7d    Interval = "10080"
+	Interval15d   Interval = "21600"
+)
+
 type OrderType string
 
 const (
@@ -111,6 +125,25 @@ type Fee struct {
 	Volume int64 `json:"volume"`
 	// Percent
 	Percent decimal.Decimal `json:"percent"`
+}
+
+type OHLCData struct {
+	// Time
+	Time time.Time `json:"time"`
+	// Open
+	Open decimal.Decimal `json:"open"`
+	// High
+	High decimal.Decimal `json:"high"`
+	// Low
+	Low decimal.Decimal `json:"low"`
+	// Close
+	Close decimal.Decimal `json:"close"`
+	// VWAP: Volume Weighted Average Price
+	VWAP decimal.Decimal `json:"vwap"`
+	// Volume
+	Volume decimal.Decimal `json:"volume"`
+	// Count
+	Count int64 `json:"count"`
 }
 
 type OrderBook struct {
