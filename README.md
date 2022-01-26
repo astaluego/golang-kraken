@@ -46,7 +46,7 @@ func main() {
 - [x] Get server time
 - [x] Get system status
 - [x] Get asset info
-- [ ] Get tradable asset pairs
+- [x] Get tradable asset pairs
 - [ ] Get ticker information
 - [ ] Get OHLC data
 - [ ] Get order book

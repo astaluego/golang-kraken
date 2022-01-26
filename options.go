@@ -26,3 +26,23 @@ func (payload Payload) OptAssetClass(assetClass AssetClass) {
 
 	payload["aclass"] = []string{string(assetClass)}
 }
+
+func (payload Payload) OptAssetPairs(assetPairs ...AssetPair) {
+	if len(assetPairs) == 0 {
+		return
+	}
+
+	list := []string{}
+	for _, assetPair := range assetPairs {
+		list = append(list, string(assetPair))
+	}
+	payload["pair"] = []string{strings.Join(list, ",")}
+}
+
+func (payload Payload) OptInformations(information Information) {
+	if string(information) == "" {
+		return
+	}
+
+	payload["info"] = []string{string(information)}
+}
