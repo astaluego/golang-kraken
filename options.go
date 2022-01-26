@@ -53,6 +53,14 @@ func (payload Payload) OptInformations(information Information) {
 	payload["info"] = []string{string(information)}
 }
 
+func (payload Payload) OptInterval(interval Interval) {
+	if string(interval) == "" {
+		return
+	}
+
+	payload["interval"] = []string{string(interval)}
+}
+
 func (payload Payload) OptSince(time time.Time) {
 	if time.IsZero() {
 		return

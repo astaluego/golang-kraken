@@ -140,6 +140,98 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 	return &response, nil
 }
 
+type OHLCConfig struct {
+	// AssetPair is required
+	AssetPair AssetPair
+	// Interval is optional
+	Interval Interval
+	// Since is optional
+	Since time.Time
+}
+
+// OHLC
+// Meanse "Open-high-low-close chart"
+// Note: the last entry in the OHLC array is for the last, not-yet-committed frame and will always
+// be present, regardless of the value of `since`.
+// https://docs.kraken.com/rest/#operation/getOHLCData
+func (c *Client) OHLC(config OHLCConfig) (*[]OHLCData, time.Time, error) {
+	if config.AssetPair == "" {
+		return nil, time.Time{}, fmt.Errorf("AssetPair is required")
+	}
+
+	payload := Payload{}
+	payload.OptAssetPairs(config.AssetPair)
+	payload.OptInterval(config.Interval)
+	payload.OptSince(config.Since)
+
+	var resp interface{}
+	err := c.doRequest("OHLC", false, url.Values(payload), &resp)
+	if err != nil {
+		return nil, time.Time{}, err
+	}
+
+	var last time.Time
+	response := []OHLCData{}
+
+	for key, value := range resp.(map[string]interface{}) {
+		if key == "last" {
+			last = time.Unix(int64(value.(float64)), 0)
+			continue
+		}
+		for _, array := range value.([]interface{}) {
+			a := array.([]interface{})
+
+			if len(a) == 8 {
+				t := time.Unix(int64(a[0].(float64)), 0)
+
+				open, err := decimal.NewFromString(a[1].(string))
+				if err != nil {
+					continue
+				}
+
+				high, err := decimal.NewFromString(a[2].(string))
+				if err != nil {
+					continue
+				}
+
+				low, err := decimal.NewFromString(a[3].(string))
+				if err != nil {
+					continue
+				}
+
+				close, err := decimal.NewFromString(a[4].(string))
+				if err != nil {
+					continue
+				}
+
+				vwap, err := decimal.NewFromString(a[5].(string))
+				if err != nil {
+					continue
+				}
+
+				count, err := decimal.NewFromString(a[6].(string))
+				if err != nil {
+					continue
+				}
+
+				ohlcData := OHLCData{
+					Time:   t,
+					Open:   open,
+					High:   high,
+					Low:    low,
+					Close:  close,
+					VWAP:   vwap,
+					Volume: count,
+					Count:  int64(a[7].(float64)),
+				}
+				response = append(response, ohlcData)
+			}
+		}
+	}
+
+	return &response, last, nil
+}
+
 type OrderBookConfig struct {
 	// AssetPair is required
 	AssetPair AssetPair
