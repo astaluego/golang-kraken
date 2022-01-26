@@ -2,7 +2,9 @@ package kraken
 
 import (
 	"net/url"
+	"strconv"
 	"strings"
+	"time"
 )
 
 type Payload url.Values
@@ -45,4 +47,12 @@ func (payload Payload) OptInformations(information Information) {
 	}
 
 	payload["info"] = []string{string(information)}
+}
+
+func (payload Payload) OptSince(time time.Time) {
+	if time.IsZero() {
+		return
+	}
+
+	payload["since"] = []string{strconv.FormatInt(time.Unix(), 10)}
 }

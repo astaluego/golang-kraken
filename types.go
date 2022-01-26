@@ -41,7 +41,7 @@ type SystemStatus struct {
 	// Status: Current system status
 	Status Status `json:"status"`
 	// Timestamp: Current timestamp (RFC3339)
-	Timestamp *time.Time `json:"timestamp"`
+	Timestamp time.Time `json:"timestamp"`
 }
 
 type AssetInfo struct {
@@ -94,7 +94,16 @@ type AssetPairsInfo struct {
 
 type Fee struct {
 	// Volume
-	Volume int64
+	Volume int64 `json:"volume"`
 	// Percent
-	Percent decimal.Decimal
+	Percent decimal.Decimal `json:"percent"`
+}
+
+type SpreadData struct {
+	// Time
+	Time time.Time `json:"time"`
+	// Bid
+	Bid decimal.Decimal `json:"bid"`
+	// Ask
+	Ask decimal.Decimal `json:"ask"`
 }

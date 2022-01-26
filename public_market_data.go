@@ -1,7 +1,9 @@
 package kraken
 
 import (
+	"fmt"
 	"net/url"
+	"time"
 
 	"github.com/shopspring/decimal"
 )
@@ -134,4 +136,64 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 	}
 
 	return &response, nil
+}
+
+type RecentSpreadsConfig struct {
+	// AssetPair is required
+	AssetPair AssetPair
+	// Since is optional
+	Since time.Time
+}
+
+// RecentSpreads
+// Returns the last 1000 trades by default
+// https://docs.kraken.com/rest/#operation/getRecentSpreads
+func (c *Client) RecentSpreads(config RecentSpreadsConfig) (*[]SpreadData, time.Time, error) {
+	if config.AssetPair == "" {
+		return nil, time.Time{}, fmt.Errorf("AssetPair is required")
+	}
+
+	payload := Payload{}
+	payload.OptAssetPairs(config.AssetPair)
+	payload.OptSince(config.Since)
+
+	var resp interface{}
+	err := c.doRequest("Spread", false, url.Values(payload), &resp)
+	if err != nil {
+		return nil, time.Time{}, err
+	}
+
+	var last time.Time
+	response := []SpreadData{}
+
+	for key, value := range resp.(map[string]interface{}) {
+		if key == "last" {
+			last = time.Unix(int64(value.(float64)), 0)
+			continue
+		}
+		for _, array := range value.([]interface{}) {
+			a := array.([]interface{})
+			if len(a) == 3 {
+				t := time.Unix(int64(a[0].(float64)), 0)
+
+				bid, err := decimal.NewFromString(a[1].(string))
+				if err != nil {
+					continue
+				}
+
+				ask, err := decimal.NewFromString(a[2].(string))
+				if err != nil {
+					continue
+				}
+
+				spreadData := SpreadData{
+					Time: t,
+					Bid:  bid,
+					Ask:  ask,
+				}
+				response = append(response, spreadData)
+			}
+		}
+	}
+	return &response, last, nil
 }
