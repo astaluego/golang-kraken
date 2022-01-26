@@ -38,6 +38,16 @@ func main() {
     } else {
         fmt.Println(assets)
     }
+
+    // Private calls
+    client.WithAuthentification("YOUR_API_KEY", "YOUR_PRIVATE_KEY") // To generate a new one --> https://www.kraken.com/u/security/api
+
+    accountBalance, err := client.AccountBalance()
+    if err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Println(accountBalance)
+    }
 }
 ```
 
@@ -57,7 +67,7 @@ func main() {
 
 ### Private user data
 
-- [ ] Get account balance
+- [x] Get account balance
 - [ ] Get trade balance
 - [ ] Get open orders
 - [ ] Get closed orders

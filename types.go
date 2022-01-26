@@ -185,3 +185,7 @@ type SpreadData struct {
 	// Ask
 	Ask decimal.Decimal `json:"ask"`
 }
+
+type AccountBalance struct {
+	Assets
+}
