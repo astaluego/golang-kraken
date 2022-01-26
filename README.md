@@ -25,8 +25,9 @@ func main() {
     time, err := client.ServerTime()
     if err != nil {
         fmt.Println(err)
+    } else {
+        fmt.Println(time)
     }
-    fmt.Println(time)
 
     assets, err := client.Assets(kraken.AssetsConfig{
         AssetClass: kraken.Currency,
@@ -34,8 +35,9 @@ func main() {
     })
     if err != nil {
         fmt.Println(err)
+    } else {
+        fmt.Println(assets)
     }
-    fmt.Println(assets)
 }
 ```
 
