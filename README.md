@@ -53,7 +53,7 @@ func main() {
 - [ ] Get OHLC data
 - [ ] Get order book
 - [ ] Get recent trades
-- [ ] Get recent spread data
+- [x] Get recent spread data
 
 ### Private user data
 
