@@ -52,7 +52,7 @@ func main() {
 - [ ] Get ticker information
 - [ ] Get OHLC data
 - [ ] Get order book
-- [ ] Get recent trades
+- [x] Get recent trades
 - [x] Get recent spread data
 
 ### Private user data

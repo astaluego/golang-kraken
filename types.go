@@ -30,6 +30,20 @@ const (
 	MarginInformations   Information = "margin"
 )
 
+type OrderType string
+
+const (
+	Market OrderType = "market"
+	Limit  OrderType = "limit"
+)
+
+type Type string
+
+const (
+	Buy  Type = "buy"
+	Sell Type = "sell"
+)
+
 type ServerTime struct {
 	// Unixtime: Unix timestamp
 	Unixtime int64 `json:"unixtime"`
@@ -97,6 +111,21 @@ type Fee struct {
 	Volume int64 `json:"volume"`
 	// Percent
 	Percent decimal.Decimal `json:"percent"`
+}
+
+type TradeData struct {
+	// Price
+	Price decimal.Decimal `json:"price"`
+	// Volume
+	Volume decimal.Decimal `json:"volume"`
+	// Time
+	Time time.Time `json:"time"`
+	// Type (buy or sell)
+	Type Type `json:"type"`
+	// OrderType (market or limit)
+	OrderType OrderType `json:"order_type"`
+	// Miscellaneous
+	Miscellaneous string `json:"miscellanous"`
 }
 
 type SpreadData struct {

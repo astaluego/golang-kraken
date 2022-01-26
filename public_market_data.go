@@ -2,7 +2,9 @@ package kraken
 
 import (
 	"fmt"
+	"math"
 	"net/url"
+	"strconv"
 	"time"
 
 	"github.com/shopspring/decimal"
@@ -136,6 +138,89 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 	}
 
 	return &response, nil
+}
+
+type RecentTradesConfig struct {
+	// AssetPair is required
+	AssetPair AssetPair
+	// Since is optional
+	Since time.Time
+}
+
+// RecentTrades
+// Returns the last 1000 trades by default
+// https://docs.kraken.com/rest/#operation/getRecentTrades
+func (c *Client) RecentTrades(config RecentTradesConfig) (*[]TradeData, time.Time, error) {
+	if config.AssetPair == "" {
+		return nil, time.Time{}, fmt.Errorf("AssetPair is required")
+	}
+
+	payload := Payload{}
+	payload.OptAssetPairs(config.AssetPair)
+	payload.OptSince(config.Since)
+
+	var resp interface{}
+	err := c.doRequest("Trades", false, url.Values(payload), &resp)
+	if err != nil {
+		return nil, time.Time{}, err
+	}
+
+	var last time.Time
+	response := []TradeData{}
+
+	for key, value := range resp.(map[string]interface{}) {
+		if key == "last" {
+			i, err := strconv.ParseInt(value.(string), 10, 64)
+			if err != nil {
+				continue
+			}
+			last = time.Unix(0, i)
+			continue
+		}
+		for _, array := range value.([]interface{}) {
+			a := array.([]interface{})
+
+			if len(a) == 6 {
+				price, err := decimal.NewFromString(a[0].(string))
+				if err != nil {
+					continue
+				}
+
+				volume, err := decimal.NewFromString(a[1].(string))
+				if err != nil {
+					continue
+				}
+
+				integer, decimal := math.Modf(a[2].(float64))
+				t := time.Unix(int64(integer), int64(decimal*10000))
+
+				var tradeType Type
+				if a[3].(string) == "s" {
+					tradeType = Sell
+				} else if a[3].(string) == "b" {
+					tradeType = Buy
+				}
+
+				var orderType OrderType
+				if a[4].(string) == "m" {
+					orderType = Market
+				} else if a[4].(string) == "l" {
+					orderType = Limit
+				}
+
+				tradeData := TradeData{
+					Price:         price,
+					Volume:        volume,
+					Time:          t,
+					Type:          tradeType,
+					OrderType:     orderType,
+					Miscellaneous: a[5].(string),
+				}
+				response = append(response, tradeData)
+			}
+		}
+	}
+	return &response, last, err
 }
 
 type RecentSpreadsConfig struct {
