@@ -68,7 +68,7 @@ func main() {
 ### Private user data
 
 - [x] Get account balance
-- [ ] Get trade balance
+- [x] Get trade balance
 - [ ] Get open orders
 - [ ] Get closed orders
 - [ ] Query orders info
