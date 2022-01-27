@@ -1,6 +1,7 @@
 package kraken
 
 import (
+	"fmt"
 	"net/url"
 	"strconv"
 	"strings"
@@ -67,4 +68,16 @@ func (payload Payload) OptSince(time time.Time) {
 	}
 
 	payload["since"] = []string{strconv.FormatInt(time.Unix(), 10)}
+}
+
+func (payload Payload) OptUserReferenceID(userReferenceID int64) {
+	if userReferenceID == 0 {
+		return
+	}
+
+	payload["userref"] = []string{strconv.FormatInt(userReferenceID, 10)}
+}
+
+func (payload Payload) OptWithRelatedTrades(withRelatedTrades bool) {
+	payload["trades"] = []string{fmt.Sprintf("%t", withRelatedTrades)}
 }
