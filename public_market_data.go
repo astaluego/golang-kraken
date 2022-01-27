@@ -34,6 +34,7 @@ func (c *Client) SystemStatus() (*SystemStatus, error) {
 
 type AssetsConfig struct {
 	// AssetClass is optional
+	// Default: currency
 	AssetClass AssetClass
 	// Assets is optional
 	Assets []Asset
@@ -56,6 +57,7 @@ type AssetPairsConfig struct {
 	// AssetPairs is optional
 	AssetPairs []AssetPair
 	// Information is optional
+	// Default: info
 	Information Information
 }
 
@@ -144,6 +146,7 @@ type OHLCConfig struct {
 	// AssetPair is required
 	AssetPair AssetPair
 	// Interval is optional
+	// Default: 1min
 	Interval Interval
 	// Since is optional
 	Since time.Time
@@ -236,6 +239,7 @@ type OrderBookConfig struct {
 	// AssetPair is required
 	AssetPair AssetPair
 	// Count is optional
+	// Default: 100
 	Count int64
 }
 

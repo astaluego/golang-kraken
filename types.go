@@ -59,27 +59,27 @@ const (
 )
 
 type ServerTime struct {
-	// Unixtime: Unix timestamp
+	// Unix timestamp
 	Unixtime int64 `json:"unixtime"`
-	// RFC1123: RFC 1123 time format
+	// RFC 1123 time format
 	RFC1123 string `json:"rfc1123"`
 }
 
 type SystemStatus struct {
-	// Status: Current system status
+	// Current system status
 	Status Status `json:"status"`
-	// Timestamp: Current timestamp (RFC3339)
+	// Current timestamp (RFC3339)
 	Timestamp time.Time `json:"timestamp"`
 }
 
 type AssetInfo struct {
-	// Altname: Alternative name
+	// Alternative name
 	Altname string `json:"altname"`
-	// AssetClass: Asset class
+	// Asset class
 	AssetClass AssetClass `json:"aclass"`
-	// Decimals: Scaling decimal places for record keeping
+	// Scaling decimal places for record keeping
 	Decimals int64 `json:"decimals"`
-	// DisplayDecimals: Scaling decimal places for output display
+	// Scaling decimal places for output display
 	DisplayDecimals int64 `json:"display_decimals"`
 }
 
@@ -138,7 +138,7 @@ type OHLCData struct {
 	Low decimal.Decimal `json:"low"`
 	// Close
 	Close decimal.Decimal `json:"close"`
-	// VWAP: Volume Weighted Average Price
+	// Volume Weighted Average Price
 	VWAP decimal.Decimal `json:"vwap"`
 	// Volume
 	Volume decimal.Decimal `json:"volume"`
@@ -188,4 +188,25 @@ type SpreadData struct {
 
 type AccountBalance struct {
 	Assets
+}
+
+type TradeBalance struct {
+	// Equivalent balance (combined balance of all currencies)
+	EquivalentBalance decimal.Decimal `json:"eb,string"`
+	// Trade balance (combined balance of all equity currencies)
+	TradeBalance decimal.Decimal `json:"tb,string"`
+	// Margin amount of open positions
+	MarginOP decimal.Decimal `json:"m,string"`
+	// Unrealized net profit/loss of open positions
+	UnrealizedNetProfitLossOP decimal.Decimal `json:"n,string"`
+	// Cost basis of open positions
+	CostBasisOP decimal.Decimal `json:"c,string"`
+	// Current floating valuation of open positions
+	CurrentValuationOP decimal.Decimal `json:"v,string"`
+	// Equity = trade balance + unrealized net profit/loss
+	Equity decimal.Decimal `json:"e,string"`
+	// FreeMargin = equity - initial margin (maximum margin available to open new positions)
+	FreeMargin decimal.Decimal `json:"mf,string"`
+	// MargimLevel = (equity / initial margin) * 100
+	MarginLevel decimal.Decimal `json:"ml,string"`
 }
