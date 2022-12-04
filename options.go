@@ -68,3 +68,19 @@ func (payload Payload) OptSince(time time.Time) {
 
 	payload["since"] = []string{strconv.FormatInt(time.Unix(), 10)}
 }
+
+func (payload Payload) OptWithTrades(withTrades bool) {
+	if !withTrades {
+		return
+	}
+
+	payload["trades"] = []string{"true"}
+}
+
+func (payload Payload) OptWithUserReferenceID(userReferenceID int64) {
+	if userReferenceID == 0 {
+		return
+	}
+
+	payload["userref"] = []string{strconv.FormatInt(userReferenceID, 10)}
+}

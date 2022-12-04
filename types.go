@@ -63,11 +63,26 @@ const (
 	Interval15d   Interval = "21600"
 )
 
+type OrderStatus string
+
+const (
+	Pending  OrderStatus = "pending"
+	Open     OrderStatus = "open"
+	Closed   OrderStatus = "closed"
+	Canceled OrderStatus = "canceled"
+	Expired  OrderStatus = "expired"
+)
+
 type OrderType string
 
 const (
-	Market OrderType = "market"
-	Limit  OrderType = "limit"
+	Market          OrderType = "market"
+	Limit           OrderType = "limit"
+	StopLoss        OrderType = "stop-loss"
+	TakeProfit      OrderType = "take-profit"
+	StopLossLimit   OrderType = "stop-loss-limit"
+	TakeProfitLimit OrderType = "take-profit-limit"
+	SettlePosition  OrderType = "settle-position"
 )
 
 type Type string
@@ -75,6 +90,28 @@ type Type string
 const (
 	Buy  Type = "buy"
 	Sell Type = "sell"
+)
+
+type TriggerType string
+
+const (
+	Last  TriggerType = "last"
+	Index TriggerType = "index"
+)
+
+type OrderFlag string
+
+const (
+	// Post only order (available when ordertype = limit)
+	Post OrderFlag = "post"
+	// Fcib prefer fee in base currency (default if selling)
+	Fcib OrderFlag = "fcib"
+	// Fciq prefer fee in quote currency (default if buying, mutually exclusive with fcib)
+	Fciq OrderFlag = "fciq"
+	// Nompp disable market price protection for market orders
+	Nompp OrderFlag = "nompp"
+	// Viqc order volume expressed in quote currency. This is supported only for market orders
+	Viqc OrderFlag = "viqc"
 )
 
 type ServerTime struct {
@@ -229,23 +266,85 @@ type AccountBalance struct {
 
 type TradeBalance struct {
 	// Equivalent balance (combined balance of all currencies)
-	EquivalentBalance decimal.Decimal `json:"eb,string"`
+	EquivalentBalance decimal.Decimal `json:"eb"`
 	// Trade balance (combined balance of all equity currencies)
-	TradeBalance decimal.Decimal `json:"tb,string"`
+	TradeBalance decimal.Decimal `json:"tb"`
 	// Margin amount of open positions
-	MarginOP decimal.Decimal `json:"m,string"`
+	MarginOP decimal.Decimal `json:"m"`
 	// Unrealized net profit/loss of open positions
-	UnrealizedNetProfitLossOP decimal.Decimal `json:"n,string"`
+	UnrealizedNetProfitLossOP decimal.Decimal `json:"n"`
 	// Cost basis of open positions
-	CostBasisOP decimal.Decimal `json:"c,string"`
+	CostBasisOP decimal.Decimal `json:"c"`
 	// Current floating valuation of open positions
-	CurrentValuationOP decimal.Decimal `json:"v,string"`
+	CurrentValuationOP decimal.Decimal `json:"v"`
 	// Equity = trade balance + unrealized net profit/loss
-	Equity decimal.Decimal `json:"e,string"`
+	Equity decimal.Decimal `json:"e"`
 	// FreeMargin = equity - initial margin (maximum margin available to open new positions)
-	FreeMargin decimal.Decimal `json:"mf,string"`
+	FreeMargin decimal.Decimal `json:"mf"`
 	// MargimLevel = (equity / initial margin) * 100
-	MarginLevel decimal.Decimal `json:"ml,string"`
+	MarginLevel decimal.Decimal `json:"ml"`
 	// Unexecuted value: Value of unfilled and partially filled orders
-	Unexecuted decimal.Decimal `json:"uv,string"`
+	Unexecuted decimal.Decimal `json:"uv"`
+}
+
+type Order struct {
+	// Referral order transaction ID that created this order
+	ReferralOrderTxID string `json:"refid"`
+	// User reference id
+	UserReferenceID int64 `json:"userref"`
+	// Status of order
+	Status OrderStatus `json:"status"`
+	// Unix timestamp of when order was placed
+	OpenedAt time.Time `json:"opentm"`
+	// Unix timestamp of order start time (or 0 if not set)
+	StartAt time.Time `json:"starttm"`
+	// Unix timestamp of order end time (or 0 if not set)
+	ExpireAt time.Time `json:"expiretm"`
+
+	// Order description info
+	OrderDescription struct {
+		// Asset pair
+		Pair AssetPair `json:"pair"`
+		// Type of order (buy/sell)
+		Type Type `json:"type"`
+		// Order type
+		Ordertype OrderType `json:"ordertype"`
+		// Primary price
+		Price decimal.Decimal `json:"price"`
+		// Secondary price
+		Price2 decimal.Decimal `json:"price2"`
+		// Amount of leverage
+		Leverage string `json:"leverage"`
+		// Order description
+		Order string `json:"order"`
+		// Conditional close order description (if conditional close set)
+		Close string `json:"close"`
+	} `json:"descr"`
+
+	// Volume of order (base currency)
+	Volume decimal.Decimal `json:"vol"`
+	// Volume executed (base currency)
+	VolumeExecuted decimal.Decimal `json:"vol_exec"`
+	// Total cost (quote currency unless)
+	Cost decimal.Decimal `json:"cost"`
+	// Total fee (quote currency)
+	Fee decimal.Decimal `json:"fee"`
+	// Average price (quote currency)
+	Price decimal.Decimal `json:"price"`
+	// Stop price (quote currency)
+	StopPrice decimal.Decimal `json:"stopprice"`
+	// Triggered limit price (quote currency, when limit based order type triggered)
+	LimitPrice decimal.Decimal `json:"limitprice"`
+	// Price signal used to trigger "stop-loss" "take-profit" "stop-loss-limit" "take-profit-limit" orders.
+	Trigger TriggerType `json:"trigger"`
+	// Comma delimited list of miscellaneous info
+	// - stopped triggered by stop price
+	// - touched triggered by touch price
+	// - liquidated liquidation
+	// - partial partial fill
+	Miscellaneous string `json:"misc"`
+	// List of order flags
+	Flags []OrderFlag `json:"oflags"`
+	// List of trade IDs related to order (if trades info requested and data available)
+	TradesIDs []string `json:"trades"`
 }
