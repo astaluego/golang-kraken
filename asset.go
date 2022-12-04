@@ -8,16 +8,32 @@ type Asset string
 const (
 	AAVE   Asset = "AAVE"
 	ACA    Asset = "ACA"
+	ACH    Asset = "ACH"
 	ADA    Asset = "ADA"
 	ADAs   Asset = "ADA.S"
+	ADX    Asset = "ADX"
+	AED    Asset = "AED"
+	AEDh   Asset = "AED.HOLD"
+	AGLD   Asset = "AGLD"
+	AIR    Asset = "AIR"
+	AKT    Asset = "AKT"
+	ALCX   Asset = "ALCX"
 	ALGO   Asset = "ALGO"
 	ALGOs  Asset = "ALGO.S"
+	ALICE  Asset = "ALICE"
+	ALPHA  Asset = "ALPHA"
 	ANKR   Asset = "ANKR"
 	ANT    Asset = "ANT"
+	APE    Asset = "APE"
+	API3   Asset = "API3"
+	APT    Asset = "APT"
+	ARPA   Asset = "ARPA"
 	ASTR   Asset = "ASTR"
 	ATLAS  Asset = "ATLAS"
 	ATOM   Asset = "ATOM"
 	ATOMs  Asset = "ATOM.S"
+	AUDh   Asset = "AUD.HOLD"
+	AUDIO  Asset = "AUDIO"
 	AVAX   Asset = "AVAX"
 	AXS    Asset = "AXS"
 	BADGER Asset = "BADGER"
@@ -25,107 +41,208 @@ const (
 	BAND   Asset = "BAND"
 	BAT    Asset = "BAT"
 	BCH    Asset = "BCH"
+	BICO   Asset = "BICO"
+	BIT    Asset = "BIT"
+	BLZ    Asset = "BLZ"
 	BNC    Asset = "BNC"
 	BNT    Asset = "BNT"
+	BOBA   Asset = "BOBA"
+	BOND   Asset = "BOND"
+	BSX    Asset = "BSX"
+	BTT    Asset = "BTT"
+	C98    Asset = "C98"
+	CADh   Asset = "CAD.HOLD"
+	CELR   Asset = "CELR"
+	CFG    Asset = "CFG"
 	CHF    Asset = "CHF"
+	CHFh   Asset = "CHF.HOLD"
+	CHR    Asset = "CHR"
 	CHZ    Asset = "CHZ"
 	COMP   Asset = "COMP"
+	COTI   Asset = "COTI"
 	CQT    Asset = "CQT"
 	CRV    Asset = "CRV"
+	CSM    Asset = "CSM"
 	CTSI   Asset = "CTSI"
+	CVC    Asset = "CVC"
+	CVX    Asset = "CVX"
 	DAI    Asset = "DAI"
 	DASH   Asset = "DASH"
+	DENT   Asset = "DENT"
 	DOT    Asset = "DOT"
 	DOTp   Asset = "DOT.P"
 	DOTs   Asset = "DOT.S"
 	DYDX   Asset = "DYDX"
+	EGLD   Asset = "EGLD"
 	ENJ    Asset = "ENJ"
+	ENS    Asset = "ENS"
 	EOS    Asset = "EOS"
 	ETH2   Asset = "ETH2"
 	ETH2s  Asset = "ETH2.S"
+	ETHW   Asset = "ETHW"
 	EURh   Asset = "EUR.HOLD"
 	EURm   Asset = "EUR.M"
 	EWT    Asset = "EWT"
+	FARM   Asset = "FARM"
+	FET    Asset = "FET"
 	FIDA   Asset = "FIDA"
 	FIL    Asset = "FIL"
+	FIS    Asset = "FIS"
 	FLOW   Asset = "FLOW"
 	FLOWs  Asset = "FLOW.S"
 	FLOWH  Asset = "FLOWH"
 	FLOWHs Asset = "FLOWH.S"
+	FLR    Asset = "FLR"
+	FORTH  Asset = "FORTH"
+	FTM    Asset = "FTM"
+	FXS    Asset = "FXS"
+	GAL    Asset = "GAL"
+	GALA   Asset = "GALA"
+	GARI   Asset = "GARI"
+	GBPh   Asset = "GBP.HOLD"
 	GHST   Asset = "GHST"
 	GLMR   Asset = "GLMR"
+	GMT    Asset = "GMT"
 	GNO    Asset = "GNO"
 	GRT    Asset = "GRT"
+	GRTs   Asset = "GRT.S"
+	GST    Asset = "GST"
+	GTC    Asset = "GTC"
+	HFT    Asset = "HFT"
+	ICP    Asset = "ICP"
 	ICX    Asset = "ICX"
+	IDEX   Asset = "IDEX"
+	IMX    Asset = "IMX"
 	INJ    Asset = "INJ"
+	INTR   Asset = "INTR"
+	JASMY  Asset = "JASMY"
+	JUNO   Asset = "JUNO"
 	KAR    Asset = "KAR"
 	KAVA   Asset = "KAVA"
 	KAVAs  Asset = "KAVA.S"
 	KEEP   Asset = "KEEP"
+	KEY    Asset = "KEY"
 	FEE    Asset = "KFEE"
 	KILT   Asset = "KILT"
 	KIN    Asset = "KIN"
 	KINT   Asset = "KINT"
 	KNC    Asset = "KNC"
+	KP3R   Asset = "KP3R"
 	KSM    Asset = "KSM"
 	KSMp   Asset = "KSM.P"
 	KSMs   Asset = "KSM.S"
+	LCX    Asset = "LCX"
+	LDO    Asset = "LDO"
 	LINK   Asset = "LINK"
 	LPT    Asset = "LPT"
 	LRC    Asset = "LRC"
 	LSK    Asset = "LSK"
 	LUNA   Asset = "LUNA"
+	LUNAs  Asset = "LUNA.S"
+	LUNA2  Asset = "LUNA2"
 	MANA   Asset = "MANA"
+	MASK   Asset = "MASK"
 	MATIC  Asset = "MATIC"
+	MATICs Asset = "MATIC.S"
+	MC     Asset = "MC"
 	MINA   Asset = "MINA"
 	MINAs  Asset = "MINA.S"
 	MIR    Asset = "MIR"
 	MKR    Asset = "MKR"
 	MNGO   Asset = "MNGO"
 	MOVR   Asset = "MOVR"
+	MSOL   Asset = "MSOL"
+	MULTI  Asset = "MULTI"
+	MV     Asset = "MV"
+	MXC    Asset = "MXC"
 	NANO   Asset = "NANO"
+	NEAR   Asset = "NEAR"
+	NMR    Asset = "NMR"
+	NODL   Asset = "NODL"
+	NYM    Asset = "NYM"
 	OCEAN  Asset = "OCEAN"
 	OGN    Asset = "OGN"
 	OMG    Asset = "OMG"
 	ORCA   Asset = "ORCA"
 	OXT    Asset = "OXT"
 	OXY    Asset = "OXY"
+	PARA   Asset = "PARA"
 	PAXG   Asset = "PAXG"
 	PERP   Asset = "PERP"
 	PHA    Asset = "PHA"
+	PLA    Asset = "PLA"
 	POLIS  Asset = "POLIS"
+	POLS   Asset = "POLS"
+	POND   Asset = "POND"
+	POWR   Asset = "POWR"
+	PSTAKE Asset = "PSTAKE"
+	QNT    Asset = "QNT"
 	QTUM   Asset = "QTUM"
+	RAD    Asset = "RAD"
+	RARE   Asset = "RARE"
 	RARI   Asset = "RARI"
 	RAY    Asset = "RAY"
+	RBC    Asset = "RBC"
 	REN    Asset = "REN"
 	REPV2  Asset = "REPV2"
+	REQ    Asset = "REQ"
+	RLC    Asset = "RLC"
+	RNDR   Asset = "RNDR"
+	ROOK   Asset = "ROOK"
+	RPL    Asset = "RPL"
+	RUNE   Asset = "RUNE"
+	SAMO   Asset = "SAMO"
 	SAND   Asset = "SAND"
 	SBR    Asset = "SBR"
 	SC     Asset = "SC"
+	SCRT   Asset = "SCRT"
+	SCRTs  Asset = "SCRT.S"
 	SDN    Asset = "SDN"
+	SGB    Asset = "SGB"
 	SHIB   Asset = "SHIB"
 	SNX    Asset = "SNX"
 	SOL    Asset = "SOL"
 	SOLs   Asset = "SOL.S"
+	SPELL  Asset = "SPELL"
 	SRM    Asset = "SRM"
 	STEP   Asset = "STEP"
+	STG    Asset = "STG"
 	STORJ  Asset = "STORJ"
+	STX    Asset = "STX"
+	SUPER  Asset = "SUPER"
 	SUSHI  Asset = "SUSHI"
+	SXP    Asset = "SXP"
+	SYN    Asset = "SYN"
+	T      Asset = "T"
 	TBTC   Asset = "TBTC"
+	TEER   Asset = "TEER"
+	TLM    Asset = "TLM"
+	TOKE   Asset = "TOKE"
+	TRIBE  Asset = "TRIBE"
+	TRU    Asset = "TRU"
 	TRX    Asset = "TRX"
+	TRXs   Asset = "TRX.S"
+	TVK    Asset = "TVK"
+	UMA    Asset = "UMA"
+	UNFI   Asset = "UNFI"
 	UNI    Asset = "UNI"
 	USDh   Asset = "USD.HOLD"
 	USDm   Asset = "USD.M"
 	USDC   Asset = "USDC"
 	USDT   Asset = "USDT"
+	UST    Asset = "UST"
 	WAVES  Asset = "WAVES"
 	WBTC   Asset = "WBTC"
+	WETH   Asset = "WETH"
+	WOO    Asset = "WOO"
 	XBTm   Asset = "XBT.M"
+	XCN    Asset = "XCN"
 	ETC    Asset = "XETC"
 	ETH    Asset = "XETH"
 	LTC    Asset = "XLTC"
 	MLN    Asset = "XMLN"
 	REP    Asset = "XREP"
+	XRT    Asset = "XRT"
 	XTZ    Asset = "XTZ"
 	XTZs   Asset = "XTZ.S"
 	XBT    Asset = "XXBT"
@@ -135,6 +252,7 @@ const (
 	XRP    Asset = "XXRP"
 	ZEC    Asset = "XZEC"
 	YFI    Asset = "YFI"
+	YGG    Asset = "YGG"
 	AUD    Asset = "ZAUD"
 	CAD    Asset = "ZCAD"
 	EUR    Asset = "ZEUR"
@@ -147,16 +265,32 @@ const (
 type Assets struct {
 	AAVE   float64 `json:"AAVE,string,omitempty"`
 	ACA    float64 `json:"ACA,string,omitempty"`
+	ACH    float64 `json:"ACH,string,omitempty"`
 	ADA    float64 `json:"ADA,string,omitempty"`
 	ADAs   float64 `json:"ADA.S,string,omitempty"`
+	ADX    float64 `json:"ADX,string,omitempty"`
+	AED    float64 `json:"AED,string,omitempty"`
+	AEDh   float64 `json:"AED.HOLD,string,omitempty"`
+	AGLD   float64 `json:"AGLD,string,omitempty"`
+	AIR    float64 `json:"AIR,string,omitempty"`
+	AKT    float64 `json:"AKT,string,omitempty"`
+	ALCX   float64 `json:"ALCX,string,omitempty"`
 	ALGO   float64 `json:"ALGO,string,omitempty"`
 	ALGOs  float64 `json:"ALGO.S,string,omitempty"`
+	ALICE  float64 `json:"ALICE,string,omitempty"`
+	ALPHA  float64 `json:"ALPHA,string,omitempty"`
 	ANKR   float64 `json:"ANKR,string,omitempty"`
 	ANT    float64 `json:"ANT,string,omitempty"`
+	APE    float64 `json:"APE,string,omitempty"`
+	API3   float64 `json:"API3,string,omitempty"`
+	APT    float64 `json:"APT,string,omitempty"`
+	ARPA   float64 `json:"ARPA,string,omitempty"`
 	ASTR   float64 `json:"ASTR,string,omitempty"`
 	ATLAS  float64 `json:"ATLAS,string,omitempty"`
 	ATOM   float64 `json:"ATOM,string,omitempty"`
 	ATOMs  float64 `json:"ATOM.S,string,omitempty"`
+	AUDh   float64 `json:"AUD.HOLD,string,omitempty"`
+	AUDIO  float64 `json:"AUDIO,string,omitempty"`
 	AVAX   float64 `json:"AVAX,string,omitempty"`
 	AXS    float64 `json:"AXS,string,omitempty"`
 	BADGER float64 `json:"BADGER,string,omitempty"`
@@ -164,107 +298,208 @@ type Assets struct {
 	BAND   float64 `json:"BAND,string,omitempty"`
 	BAT    float64 `json:"BAT,string,omitempty"`
 	BCH    float64 `json:"BCH,string,omitempty"`
+	BICO   float64 `json:"BICO,string,omitempty"`
+	BIT    float64 `json:"BIT,string,omitempty"`
+	BLZ    float64 `json:"BLZ,string,omitempty"`
 	BNC    float64 `json:"BNC,string,omitempty"`
 	BNT    float64 `json:"BNT,string,omitempty"`
+	BOBA   float64 `json:"BOBA,string,omitempty"`
+	BOND   float64 `json:"BOND,string,omitempty"`
+	BSX    float64 `json:"BSX,string,omitempty"`
+	BTT    float64 `json:"BTT,string,omitempty"`
+	C98    float64 `json:"C98,string,omitempty"`
+	CADh   float64 `json:"CAD.HOLD,string,omitempty"`
+	CELR   float64 `json:"CELR,string,omitempty"`
+	CFG    float64 `json:"CFG,string,omitempty"`
 	CHF    float64 `json:"CHF,string,omitempty"`
+	CHFh   float64 `json:"CHF.HOLD,string,omitempty"`
+	CHR    float64 `json:"CHR,string,omitempty"`
 	CHZ    float64 `json:"CHZ,string,omitempty"`
 	COMP   float64 `json:"COMP,string,omitempty"`
+	COTI   float64 `json:"COTI,string,omitempty"`
 	CQT    float64 `json:"CQT,string,omitempty"`
 	CRV    float64 `json:"CRV,string,omitempty"`
+	CSM    float64 `json:"CSM,string,omitempty"`
 	CTSI   float64 `json:"CTSI,string,omitempty"`
+	CVC    float64 `json:"CVC,string,omitempty"`
+	CVX    float64 `json:"CVX,string,omitempty"`
 	DAI    float64 `json:"DAI,string,omitempty"`
 	DASH   float64 `json:"DASH,string,omitempty"`
+	DENT   float64 `json:"DENT,string,omitempty"`
 	DOT    float64 `json:"DOT,string,omitempty"`
 	DOTp   float64 `json:"DOT.P,string,omitempty"`
 	DOTs   float64 `json:"DOT.S,string,omitempty"`
 	DYDX   float64 `json:"DYDX,string,omitempty"`
+	EGLD   float64 `json:"EGLD,string,omitempty"`
 	ENJ    float64 `json:"ENJ,string,omitempty"`
+	ENS    float64 `json:"ENS,string,omitempty"`
 	EOS    float64 `json:"EOS,string,omitempty"`
 	ETH2   float64 `json:"ETH2,string,omitempty"`
 	ETH2s  float64 `json:"ETH2.S,string,omitempty"`
+	ETHW   float64 `json:"ETHW,string,omitempty"`
 	EURh   float64 `json:"EUR.HOLD,string,omitempty"`
 	EURm   float64 `json:"EUR.M,string,omitempty"`
 	EWT    float64 `json:"EWT,string,omitempty"`
+	FARM   float64 `json:"FARM,string,omitempty"`
+	FET    float64 `json:"FET,string,omitempty"`
 	FIDA   float64 `json:"FIDA,string,omitempty"`
 	FIL    float64 `json:"FIL,string,omitempty"`
+	FIS    float64 `json:"FIS,string,omitempty"`
 	FLOW   float64 `json:"FLOW,string,omitempty"`
 	FLOWs  float64 `json:"FLOW.S,string,omitempty"`
 	FLOWH  float64 `json:"FLOWH,string,omitempty"`
 	FLOWHs float64 `json:"FLOWH.S,string,omitempty"`
+	FLR    float64 `json:"FLR,string,omitempty"`
+	FORTH  float64 `json:"FORTH,string,omitempty"`
+	FTM    float64 `json:"FTM,string,omitempty"`
+	FXS    float64 `json:"FXS,string,omitempty"`
+	GAL    float64 `json:"GAL,string,omitempty"`
+	GALA   float64 `json:"GALA,string,omitempty"`
+	GARI   float64 `json:"GARI,string,omitempty"`
+	GBPh   float64 `json:"GBP.HOLD,string,omitempty"`
 	GHST   float64 `json:"GHST,string,omitempty"`
 	GLMR   float64 `json:"GLMR,string,omitempty"`
+	GMT    float64 `json:"GMT,string,omitempty"`
 	GNO    float64 `json:"GNO,string,omitempty"`
 	GRT    float64 `json:"GRT,string,omitempty"`
+	GRTs   float64 `json:"GRT.S,string,omitempty"`
+	GST    float64 `json:"GST,string,omitempty"`
+	GTC    float64 `json:"GTC,string,omitempty"`
+	HFT    float64 `json:"HFT,string,omitempty"`
+	ICP    float64 `json:"ICP,string,omitempty"`
 	ICX    float64 `json:"ICX,string,omitempty"`
+	IDEX   float64 `json:"IDEX,string,omitempty"`
+	IMX    float64 `json:"IMX,string,omitempty"`
 	INJ    float64 `json:"INJ,string,omitempty"`
+	INTR   float64 `json:"INTR,string,omitempty"`
+	JASMY  float64 `json:"JASMY,string,omitempty"`
+	JUNO   float64 `json:"JUNO,string,omitempty"`
 	KAR    float64 `json:"KAR,string,omitempty"`
 	KAVA   float64 `json:"KAVA,string,omitempty"`
 	KAVAs  float64 `json:"KAVA.S,string,omitempty"`
 	KEEP   float64 `json:"KEEP,string,omitempty"`
+	KEY    float64 `json:"KEY,string,omitempty"`
 	FEE    float64 `json:"KFEE,string,omitempty"`
 	KILT   float64 `json:"KILT,string,omitempty"`
 	KIN    float64 `json:"KIN,string,omitempty"`
 	KINT   float64 `json:"KINT,string,omitempty"`
 	KNC    float64 `json:"KNC,string,omitempty"`
+	KP3R   float64 `json:"KP3R,string,omitempty"`
 	KSM    float64 `json:"KSM,string,omitempty"`
 	KSMp   float64 `json:"KSM.P,string,omitempty"`
 	KSMs   float64 `json:"KSM.S,string,omitempty"`
+	LCX    float64 `json:"LCX,string,omitempty"`
+	LDO    float64 `json:"LDO,string,omitempty"`
 	LINK   float64 `json:"LINK,string,omitempty"`
 	LPT    float64 `json:"LPT,string,omitempty"`
 	LRC    float64 `json:"LRC,string,omitempty"`
 	LSK    float64 `json:"LSK,string,omitempty"`
 	LUNA   float64 `json:"LUNA,string,omitempty"`
+	LUNAs  float64 `json:"LUNA.S,string,omitempty"`
+	LUNA2  float64 `json:"LUNA2,string,omitempty"`
 	MANA   float64 `json:"MANA,string,omitempty"`
+	MASK   float64 `json:"MASK,string,omitempty"`
 	MATIC  float64 `json:"MATIC,string,omitempty"`
+	MATICs float64 `json:"MATIC.S,string,omitempty"`
+	MC     float64 `json:"MC,string,omitempty"`
 	MINA   float64 `json:"MINA,string,omitempty"`
 	MINAs  float64 `json:"MINA.S,string,omitempty"`
 	MIR    float64 `json:"MIR,string,omitempty"`
 	MKR    float64 `json:"MKR,string,omitempty"`
 	MNGO   float64 `json:"MNGO,string,omitempty"`
 	MOVR   float64 `json:"MOVR,string,omitempty"`
+	MSOL   float64 `json:"MSOL,string,omitempty"`
+	MULTI  float64 `json:"MULTI,string,omitempty"`
+	MV     float64 `json:"MV,string,omitempty"`
+	MXC    float64 `json:"MXC,string,omitempty"`
 	NANO   float64 `json:"NANO,string,omitempty"`
+	NEAR   float64 `json:"NEAR,string,omitempty"`
+	NMR    float64 `json:"NMR,string,omitempty"`
+	NODL   float64 `json:"NODL,string,omitempty"`
+	NYM    float64 `json:"NYM,string,omitempty"`
 	OCEAN  float64 `json:"OCEAN,string,omitempty"`
 	OGN    float64 `json:"OGN,string,omitempty"`
 	OMG    float64 `json:"OMG,string,omitempty"`
 	ORCA   float64 `json:"ORCA,string,omitempty"`
 	OXT    float64 `json:"OXT,string,omitempty"`
 	OXY    float64 `json:"OXY,string,omitempty"`
+	PARA   float64 `json:"PARA,string,omitempty"`
 	PAXG   float64 `json:"PAXG,string,omitempty"`
 	PERP   float64 `json:"PERP,string,omitempty"`
 	PHA    float64 `json:"PHA,string,omitempty"`
+	PLA    float64 `json:"PLA,string,omitempty"`
 	POLIS  float64 `json:"POLIS,string,omitempty"`
+	POLS   float64 `json:"POLS,string,omitempty"`
+	POND   float64 `json:"POND,string,omitempty"`
+	POWR   float64 `json:"POWR,string,omitempty"`
+	PSTAKE float64 `json:"PSTAKE,string,omitempty"`
+	QNT    float64 `json:"QNT,string,omitempty"`
 	QTUM   float64 `json:"QTUM,string,omitempty"`
+	RAD    float64 `json:"RAD,string,omitempty"`
+	RARE   float64 `json:"RARE,string,omitempty"`
 	RARI   float64 `json:"RARI,string,omitempty"`
 	RAY    float64 `json:"RAY,string,omitempty"`
+	RBC    float64 `json:"RBC,string,omitempty"`
 	REN    float64 `json:"REN,string,omitempty"`
 	REPV2  float64 `json:"REPV2,string,omitempty"`
+	REQ    float64 `json:"REQ,string,omitempty"`
+	RLC    float64 `json:"RLC,string,omitempty"`
+	RNDR   float64 `json:"RNDR,string,omitempty"`
+	ROOK   float64 `json:"ROOK,string,omitempty"`
+	RPL    float64 `json:"RPL,string,omitempty"`
+	RUNE   float64 `json:"RUNE,string,omitempty"`
+	SAMO   float64 `json:"SAMO,string,omitempty"`
 	SAND   float64 `json:"SAND,string,omitempty"`
 	SBR    float64 `json:"SBR,string,omitempty"`
 	SC     float64 `json:"SC,string,omitempty"`
+	SCRT   float64 `json:"SCRT,string,omitempty"`
+	SCRTs  float64 `json:"SCRT.S,string,omitempty"`
 	SDN    float64 `json:"SDN,string,omitempty"`
+	SGB    float64 `json:"SGB,string,omitempty"`
 	SHIB   float64 `json:"SHIB,string,omitempty"`
 	SNX    float64 `json:"SNX,string,omitempty"`
 	SOL    float64 `json:"SOL,string,omitempty"`
 	SOLs   float64 `json:"SOL.S,string,omitempty"`
+	SPELL  float64 `json:"SPELL,string,omitempty"`
 	SRM    float64 `json:"SRM,string,omitempty"`
 	STEP   float64 `json:"STEP,string,omitempty"`
+	STG    float64 `json:"STG,string,omitempty"`
 	STORJ  float64 `json:"STORJ,string,omitempty"`
+	STX    float64 `json:"STX,string,omitempty"`
+	SUPER  float64 `json:"SUPER,string,omitempty"`
 	SUSHI  float64 `json:"SUSHI,string,omitempty"`
+	SXP    float64 `json:"SXP,string,omitempty"`
+	SYN    float64 `json:"SYN,string,omitempty"`
+	T      float64 `json:"T,string,omitempty"`
 	TBTC   float64 `json:"TBTC,string,omitempty"`
+	TEER   float64 `json:"TEER,string,omitempty"`
+	TLM    float64 `json:"TLM,string,omitempty"`
+	TOKE   float64 `json:"TOKE,string,omitempty"`
+	TRIBE  float64 `json:"TRIBE,string,omitempty"`
+	TRU    float64 `json:"TRU,string,omitempty"`
 	TRX    float64 `json:"TRX,string,omitempty"`
+	TRXs   float64 `json:"TRX.S,string,omitempty"`
+	TVK    float64 `json:"TVK,string,omitempty"`
+	UMA    float64 `json:"UMA,string,omitempty"`
+	UNFI   float64 `json:"UNFI,string,omitempty"`
 	UNI    float64 `json:"UNI,string,omitempty"`
 	USDh   float64 `json:"USD.HOLD,string,omitempty"`
 	USDm   float64 `json:"USD.M,string,omitempty"`
 	USDC   float64 `json:"USDC,string,omitempty"`
 	USDT   float64 `json:"USDT,string,omitempty"`
+	UST    float64 `json:"UST,string,omitempty"`
 	WAVES  float64 `json:"WAVES,string,omitempty"`
 	WBTC   float64 `json:"WBTC,string,omitempty"`
+	WETH   float64 `json:"WETH,string,omitempty"`
+	WOO    float64 `json:"WOO,string,omitempty"`
 	XBTm   float64 `json:"XBT.M,string,omitempty"`
+	XCN    float64 `json:"XCN,string,omitempty"`
 	ETC    float64 `json:"XETC,string,omitempty"`
 	ETH    float64 `json:"XETH,string,omitempty"`
 	LTC    float64 `json:"XLTC,string,omitempty"`
 	MLN    float64 `json:"XMLN,string,omitempty"`
 	REP    float64 `json:"XREP,string,omitempty"`
+	XRT    float64 `json:"XRT,string,omitempty"`
 	XTZ    float64 `json:"XTZ,string,omitempty"`
 	XTZs   float64 `json:"XTZ.S,string,omitempty"`
 	XBT    float64 `json:"XXBT,string,omitempty"`
@@ -274,6 +509,7 @@ type Assets struct {
 	XRP    float64 `json:"XXRP,string,omitempty"`
 	ZEC    float64 `json:"XZEC,string,omitempty"`
 	YFI    float64 `json:"YFI,string,omitempty"`
+	YGG    float64 `json:"YGG,string,omitempty"`
 	AUD    float64 `json:"ZAUD,string,omitempty"`
 	CAD    float64 `json:"ZCAD,string,omitempty"`
 	EUR    float64 `json:"ZEUR,string,omitempty"`
