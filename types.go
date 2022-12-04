@@ -246,4 +246,6 @@ type TradeBalance struct {
 	FreeMargin decimal.Decimal `json:"mf,string"`
 	// MargimLevel = (equity / initial margin) * 100
 	MarginLevel decimal.Decimal `json:"ml,string"`
+	// Unexecuted value: Value of unfilled and partially filled orders
+	Unexecuted decimal.Decimal `json:"uv,string"`
 }
