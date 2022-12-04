@@ -21,6 +21,25 @@ const (
 	Currency AssetClass = "currency"
 )
 
+type AssetStatus string
+
+const (
+	AssetEnabled                    AssetStatus = "enabled"
+	AssetDepositOnly                AssetStatus = "deposit_only"
+	AssetWithdrawalOnly             AssetStatus = "withdrawal_only"
+	AssetFundingTemporarilyDisabled AssetStatus = "funding_temporarily_disabled"
+)
+
+type AssetPairStatus string
+
+const (
+	AssetPairOnline     AssetPairStatus = "online"
+	AssetPairCancelOnly AssetPairStatus = "cancel_only"
+	AssetPairPostOnly   AssetPairStatus = "post_only"
+	AssetPairLimitOnly  AssetPairStatus = "limit_only"
+	AssetPairReduceOnly AssetPairStatus = "reduce_only"
+)
+
 type Information string
 
 const (
@@ -73,7 +92,7 @@ type SystemStatus struct {
 }
 
 type AssetInfo struct {
-	// Alternative name
+	// Alternate name
 	Altname string `json:"altname"`
 	// Asset class
 	AssetClass AssetClass `json:"aclass"`
@@ -81,10 +100,14 @@ type AssetInfo struct {
 	Decimals int64 `json:"decimals"`
 	// Scaling decimal places for output display
 	DisplayDecimals int64 `json:"display_decimals"`
+	// Valuation as margin collateral (if applicable)
+	CollateralValue decimal.Decimal `json:"collateral_value"`
+	// Status of asset
+	Status AssetStatus `json:"status"`
 }
 
 type AssetPairsInfo struct {
-	// Alternative name
+	// Alternate name
 	Altname string `json:"altname"`
 	// WebSocket name
 	WSname string `json:"wsname"`
@@ -98,6 +121,8 @@ type AssetPairsInfo struct {
 	QuoteAsset Asset `json:"quote"`
 	// Scaling decimal places for pair
 	PairDecimals int64 `json:"pair_decimals"`
+	// Scaling decimal places for cost
+	CostDecimals int64 `json:"cost_decimals"`
 	// Scaling decimal places for volume
 	LotDecimals int64 `json:"lot_decimals"`
 	// Amount to multiply lot volume by to get currency volume
@@ -118,6 +143,16 @@ type AssetPairsInfo struct {
 	MarginStop int64 `json:"margin_stop"`
 	// Minimum order size (in terms of base currency)
 	OrderMin decimal.Decimal `json:"ordermin"`
+	// Minimum order cost (in terms of quote currency)
+	CostMin decimal.Decimal `json:"costmin"`
+	// Minimum increment between valid price levels
+	TickSize decimal.Decimal `json:"tick_size"`
+	// Status of asset pair
+	Status AssetPairStatus `json:"status"`
+	// Long position limit
+	LongPositionLimit int64 `json:"long_position_limit"`
+	// Short position limit
+	ShortPositionLimit int64 `json:"short_position_limit"`
 }
 
 type Fee struct {
@@ -175,6 +210,8 @@ type TradeData struct {
 	OrderType OrderType `json:"order_type"`
 	// Miscellaneous
 	Miscellaneous string `json:"miscellanous"`
+	// Trade ID
+	TradeID int64 `json:"trade_id"`
 }
 
 type SpreadData struct {

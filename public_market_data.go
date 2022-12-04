@@ -96,6 +96,8 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 				assetPairsInfo.QuoteAsset = Asset(v.(string))
 			case "pair_decimals":
 				assetPairsInfo.PairDecimals = int64(v.(float64))
+			case "cost_decimals":
+				assetPairsInfo.CostDecimals = int64(v.(float64))
 			case "lot_decimals":
 				assetPairsInfo.LotDecimals = int64(v.(float64))
 			case "lot_multiplier":
@@ -134,6 +136,16 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 				assetPairsInfo.MarginStop = int64(v.(float64))
 			case "ordermin":
 				assetPairsInfo.OrderMin, _ = decimal.NewFromString(v.(string))
+			case "costmin":
+				assetPairsInfo.CostMin, _ = decimal.NewFromString(v.(string))
+			case "tick_size":
+				assetPairsInfo.TickSize, _ = decimal.NewFromString(v.(string))
+			case "status":
+				assetPairsInfo.Status = AssetPairStatus(v.(string))
+			case "long_position_limit":
+				assetPairsInfo.LongPositionLimit = int64(v.(float64))
+			case "short_position_limit":
+				assetPairsInfo.ShortPositionLimit = int64(v.(float64))
 			}
 		}
 		response[AssetPair(key)] = assetPairsInfo
@@ -153,7 +165,7 @@ type OHLCConfig struct {
 }
 
 // OHLC
-// Meanse "Open-high-low-close chart"
+// Means "Open-high-low-close chart"
 // Note: the last entry in the OHLC array is for the last, not-yet-committed frame and will always
 // be present, regardless of the value of `since`.
 // https://docs.kraken.com/rest/#operation/getOHLCData
@@ -342,7 +354,7 @@ func (c *Client) RecentTrades(config RecentTradesConfig) (*[]TradeData, time.Tim
 		for _, array := range value.([]interface{}) {
 			a := array.([]interface{})
 
-			if len(a) == 6 {
+			if len(a) == 7 {
 				price, err := decimal.NewFromString(a[0].(string))
 				if err != nil {
 					continue
@@ -377,6 +389,7 @@ func (c *Client) RecentTrades(config RecentTradesConfig) (*[]TradeData, time.Tim
 					Type:          tradeType,
 					OrderType:     orderType,
 					Miscellaneous: a[5].(string),
+					TradeID:       int64(a[6].(float64)),
 				}
 				response = append(response, tradeData)
 			}

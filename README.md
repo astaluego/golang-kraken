@@ -86,9 +86,12 @@ func main() {
 ### Private user trading
 
 - [ ] Add order
+- [ ] Add order batch
+- [ ] Edit order
 - [ ] Cancel order
 - [ ] Cancel all orders
 - [ ] Cancel all orders after X
+- [ ] Cancel order batch
 
 ### Private user funding
 
