@@ -112,10 +112,10 @@ func (o *Order) UnmarshalJSON(data []byte) error {
 	type Alias Order
 
 	aux := &struct {
-		OpenedAt decimal.Decimal `json:"opentm"`
-		StartAt  int64           `json:"starttm"`
-		ExpireAt int64           `json:"expiretm"`
-		Flags    string          `json:"oflags"`
+		OpenedAt float64 `json:"opentm"`
+		StartAt  int64   `json:"starttm"`
+		ExpireAt int64   `json:"expiretm"`
+		Flags    string  `json:"oflags"`
 		*Alias
 	}{
 		Alias: (*Alias)(o),
@@ -125,7 +125,7 @@ func (o *Order) UnmarshalJSON(data []byte) error {
 	}
 
 	// Parse opened_at
-	o.OpenedAt = time.Unix(aux.OpenedAt.Floor().IntPart(), aux.OpenedAt.Sub(aux.OpenedAt.Floor()).Mul(decimal.NewFromInt(10000000)).IntPart())
+	o.OpenedAt = time.UnixMicro(int64(aux.OpenedAt * 1000000))
 
 	// Parse start_at
 	o.StartAt = time.Unix(aux.StartAt, 0)
