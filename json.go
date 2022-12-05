@@ -8,6 +8,49 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+func (a *AssetPairsInfo) UnmarshalJSON(data []byte) error {
+	type Alias AssetPairsInfo
+
+	aux := &struct {
+		Fees      [][]float64 `json:"fees"`
+		FeesMaker [][]float64 `json:"fees_maker"`
+		*Alias
+	}{
+		Alias: (*Alias)(a),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	// Parse fees
+	for _, fee := range aux.Fees {
+		if len(fee) != 2 {
+			continue
+		}
+
+		f := Fee{
+			Volume:  int64(fee[0]),
+			Percent: decimal.NewFromFloat(fee[1]),
+		}
+		a.Fees = append(a.Fees, f)
+	}
+
+	// Parse fees_maker
+	for _, feeMaker := range aux.FeesMaker {
+		if len(feeMaker) != 2 {
+			continue
+		}
+
+		f := Fee{
+			Volume:  int64(feeMaker[0]),
+			Percent: decimal.NewFromFloat(feeMaker[1]),
+		}
+		a.FeesMaker = append(a.FeesMaker, f)
+	}
+
+	return nil
+}
+
 func (o *Order) UnmarshalJSON(data []byte) error {
 	type Alias Order
 

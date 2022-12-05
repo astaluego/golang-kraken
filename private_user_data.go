@@ -44,7 +44,7 @@ type OpenOrdersConfig struct {
 	// Whether or not to include trades related to position in output
 	Trades bool
 
-	// UserReferenceID
+	// UserReferenceID is optional
 	// Restrict results to given user reference id
 	UserReferenceID int64
 }
