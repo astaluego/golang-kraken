@@ -116,6 +116,7 @@ func (o *Order) UnmarshalJSON(data []byte) error {
 		StartAt  int64   `json:"starttm"`
 		ExpireAt int64   `json:"expiretm"`
 		Flags    string  `json:"oflags"`
+		ClosedAt float64 `json:"closetm"`
 		*Alias
 	}{
 		Alias: (*Alias)(o),
@@ -149,5 +150,8 @@ func (o *Order) UnmarshalJSON(data []byte) error {
 			o.Flags = append(o.Flags, Viqc)
 		}
 	}
+
+	// Parse closed_at
+	o.ClosedAt = time.UnixMicro(int64(aux.ClosedAt * 1000000))
 	return nil
 }

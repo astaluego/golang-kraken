@@ -394,4 +394,10 @@ type Order struct {
 	Flags []OrderFlag `json:"oflags"`
 	// List of trade IDs related to order (if trades info requested and data available)
 	TradesIDs []string `json:"trades"`
+	// Only for closed orders
+	// Unix timestamp of when order was closed
+	ClosedAt time.Time `json:"closetm"`
+	// Only for closed orders
+	// Additional info on status (if any)
+	Reason string `json:"reason"`
 }

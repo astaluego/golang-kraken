@@ -45,6 +45,14 @@ func (payload Payload) OptCount(count int64) {
 	payload["count"] = []string{strconv.FormatInt(count, 10)}
 }
 
+func (payload Payload) OptWithEnd(time time.Time) {
+	if time.IsZero() {
+		return
+	}
+
+	payload["end"] = []string{strconv.FormatInt(time.Unix(), 10)}
+}
+
 func (payload Payload) OptInformations(information Information) {
 	if string(information) == "" {
 		return
@@ -61,12 +69,28 @@ func (payload Payload) OptInterval(interval Interval) {
 	payload["interval"] = []string{string(interval)}
 }
 
+func (payload Payload) OptWithOffset(offset int64) {
+	if offset == 0 {
+		return
+	}
+
+	payload["ofs"] = []string{strconv.FormatInt(offset, 10)}
+}
+
 func (payload Payload) OptSince(time time.Time) {
 	if time.IsZero() {
 		return
 	}
 
 	payload["since"] = []string{strconv.FormatInt(time.Unix(), 10)}
+}
+
+func (payload Payload) OptWithStart(time time.Time) {
+	if time.IsZero() {
+		return
+	}
+
+	payload["start"] = []string{strconv.FormatInt(time.Unix(), 10)}
 }
 
 func (payload Payload) OptWithTrades(withTrades bool) {
