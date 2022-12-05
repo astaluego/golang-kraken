@@ -45,7 +45,7 @@ func (payload Payload) OptCount(count int64) {
 	payload["count"] = []string{strconv.FormatInt(count, 10)}
 }
 
-func (payload Payload) OptWithEnd(time time.Time) {
+func (payload Payload) OptEnd(time time.Time) {
 	if time.IsZero() {
 		return
 	}
@@ -69,7 +69,7 @@ func (payload Payload) OptInterval(interval Interval) {
 	payload["interval"] = []string{string(interval)}
 }
 
-func (payload Payload) OptWithOffset(offset int64) {
+func (payload Payload) OptOffset(offset int64) {
 	if offset == 0 {
 		return
 	}
@@ -85,7 +85,7 @@ func (payload Payload) OptSince(time time.Time) {
 	payload["since"] = []string{strconv.FormatInt(time.Unix(), 10)}
 }
 
-func (payload Payload) OptWithStart(time time.Time) {
+func (payload Payload) OptStart(time time.Time) {
 	if time.IsZero() {
 		return
 	}
@@ -101,7 +101,15 @@ func (payload Payload) OptWithTrades(withTrades bool) {
 	payload["trades"] = []string{"true"}
 }
 
-func (payload Payload) OptWithUserReferenceID(userReferenceID int64) {
+func (payload Payload) OptTransactionIDs(txids []string) {
+	if len(txids) == 0 {
+		return
+	}
+
+	payload["txid"] = []string{strings.Join(txids, ",")}
+}
+
+func (payload Payload) OptUserReferenceID(userReferenceID int64) {
 	if userReferenceID == 0 {
 		return
 	}

@@ -53,11 +53,10 @@ type OpenOrdersConfig struct {
 // OpenOrders
 // Retrieve information about currently open orders.
 // https://docs.kraken.com/rest/#tag/User-Data/operation/getTradeBalance
-func (c *Client) OpenOrders(config OpenOrdersConfig) (*map[string]Order, error) {
-
+func (c *Client) OpenOrders(config OpenOrdersConfig) (map[string]Order, error) {
 	payload := Payload{}
 	payload.OptWithTrades(config.Trades)
-	payload.OptWithUserReferenceID(config.UserReferenceID)
+	payload.OptUserReferenceID(config.UserReferenceID)
 
 	type Response struct {
 		Opened map[string]Order `json:"open"`
@@ -66,7 +65,7 @@ func (c *Client) OpenOrders(config OpenOrdersConfig) (*map[string]Order, error) 
 	response := Response{}
 	err := c.doRequest("OpenOrders", true, url.Values(payload), &response)
 
-	return &response.Opened, err
+	return response.Opened, err
 }
 
 type ClosedOrdersConfig struct {
@@ -91,14 +90,13 @@ type ClosedOrdersConfig struct {
 // ClosedOrders
 // Retrieve information about currently open orders.
 // https://docs.kraken.com/rest/#tag/User-Data/operation/getTradeBalance
-func (c *Client) ClosedOrders(config ClosedOrdersConfig) (*map[string]Order, error) {
-
+func (c *Client) ClosedOrders(config ClosedOrdersConfig) (map[string]Order, error) {
 	payload := Payload{}
 	payload.OptWithTrades(config.Trades)
-	payload.OptWithUserReferenceID(config.UserReferenceID)
-	payload.OptWithStart(config.Start)
-	payload.OptWithEnd(config.End)
-	payload.OptWithOffset(config.Offset)
+	payload.OptUserReferenceID(config.UserReferenceID)
+	payload.OptStart(config.Start)
+	payload.OptEnd(config.End)
+	payload.OptOffset(config.Offset)
 
 	type Response struct {
 		Count  int64            `json:"count"`
@@ -108,5 +106,37 @@ func (c *Client) ClosedOrders(config ClosedOrdersConfig) (*map[string]Order, err
 	response := Response{}
 	err := c.doRequest("ClosedOrders", true, url.Values(payload), &response)
 
-	return &response.Closed, err
+	return response.Closed, err
+}
+
+type OrdersConfig struct {
+	// Trades is optional
+	// Whether or not to include trades related to position in output
+	Trades bool
+
+	// UserReferenceID is optional
+	// Restrict results to given user reference id
+	UserReferenceID int64
+
+	// TransactionIDs is required
+	TransactionIDs []string
+}
+
+// Orders
+// Retrieve information about specific orders.
+// https://docs.kraken.com/rest/#tag/User-Data/operation/getOrdersInfo
+func (c *Client) Orders(config OrdersConfig) (map[string]Order, error) {
+	if len(config.TransactionIDs) == 0 {
+		return nil, fmt.Errorf("TransactionIDs is required")
+	}
+
+	payload := Payload{}
+	payload.OptWithTrades(config.Trades)
+	payload.OptUserReferenceID(config.UserReferenceID)
+	payload.OptTransactionIDs(config.TransactionIDs)
+
+	response := make(map[string]Order)
+	err := c.doRequest("QueryOrders", true, url.Values(payload), &response)
+
+	return response, err
 }

@@ -72,7 +72,7 @@ func main() {
 - [x] Get trade balance
 - [x] Get open orders
 - [x] Get closed orders
-- [ ] Query orders info
+- [x] Query orders info
 - [ ] Get trades history
 - [ ] Query trades info
 - [ ] Get open positions
