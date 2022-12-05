@@ -199,6 +199,53 @@ type Fee struct {
 	Percent decimal.Decimal `json:"percent"`
 }
 
+type AssetTickerInfo struct {
+	// Ask
+	Ask struct {
+		Price          decimal.Decimal
+		WholeLotVolume decimal.Decimal
+		Volume         decimal.Decimal
+	} `json:"a"`
+	// Bid
+	Bid struct {
+		Price          decimal.Decimal
+		WholeLotVolume decimal.Decimal
+		Volume         decimal.Decimal
+	} `json:"b"`
+	// Last trade closed
+	LastTradeClosed struct {
+		Price  decimal.Decimal
+		Volume decimal.Decimal
+	} `json:"c"`
+	// Volume
+	Volume struct {
+		Today       decimal.Decimal
+		Last24hours decimal.Decimal
+	} `json:"v"`
+	// Volume Weighted Average Price
+	VWAP struct {
+		Today       decimal.Decimal
+		Last24hours decimal.Decimal
+	} `json:"p"`
+	// Number of trades
+	CountTrades struct {
+		Today       int64
+		Last24hours int64
+	} `json:"t"`
+	// Low
+	Low struct {
+		Today       decimal.Decimal
+		Last24hours decimal.Decimal
+	} `json:"l"`
+	// High
+	High struct {
+		Today       decimal.Decimal
+		Last24hours decimal.Decimal
+	} `json:"h"`
+	// Today's opening price
+	OpeningPrice decimal.Decimal `json:"o"`
+}
+
 type OHLCData struct {
 	// Time
 	Time time.Time `json:"time"`

@@ -78,6 +78,28 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 	return &response, nil
 }
 
+type TickerInformationConfig struct {
+	// AssetPairs is optional
+	AssetPairs []AssetPair
+}
+
+// TickerInformation
+// Today's prices start at midnight UTC. Leaving the pair parameter blank will return tickers for all tradeable
+// assets on Kraken.
+// https://docs.kraken.com/rest/#tag/Market-Data/operation/getTradableAssetPairs
+func (c *Client) TickerInformation(config TickerInformationConfig) (*map[AssetPair]AssetTickerInfo, error) {
+	payload := Payload{}
+	payload.OptAssetPairs(config.AssetPairs...)
+
+	var response map[AssetPair]AssetTickerInfo
+	err := c.doRequest("Ticker", false, url.Values(payload), &response)
+	if err != nil {
+		return nil, err
+	}
+
+	return &response, nil
+}
+
 type OHLCConfig struct {
 	// AssetPair is required
 	AssetPair AssetPair

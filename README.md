@@ -59,7 +59,7 @@ func main() {
 - [x] Get system status
 - [x] Get asset info
 - [x] Get tradable asset pairs
-- [ ] Get ticker information
+- [x] Get ticker information
 - [x] Get OHLC data
 - [x] Get order book
 - [x] Get recent trades
