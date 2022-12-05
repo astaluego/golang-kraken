@@ -43,14 +43,14 @@ type AssetsConfig struct {
 // Assets
 // Get information about the assets that are available for deposit, withdrawal, trading and staking.
 // https://docs.kraken.com/rest/#operation/getAssetInfo
-func (c *Client) Assets(config AssetsConfig) (*map[Asset]AssetInfo, error) {
+func (c *Client) Assets(config AssetsConfig) (map[Asset]AssetInfo, error) {
 	payload := Payload{}
 	payload.OptAssetClass(config.AssetClass)
 	payload.OptAssets(config.Assets...)
 
 	response := make(map[Asset]AssetInfo)
 	err := c.doRequest("Assets", false, url.Values(payload), &response)
-	return &response, err
+	return response, err
 }
 
 type AssetPairsConfig struct {
@@ -64,7 +64,7 @@ type AssetPairsConfig struct {
 // AssetPairs
 // Get tradable asset pairs
 // https://docs.kraken.com/rest/#operation/getTradableAssetPairs
-func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsInfo, error) {
+func (c *Client) AssetPairs(config AssetPairsConfig) (map[AssetPair]AssetPairsInfo, error) {
 	payload := Payload{}
 	payload.OptAssetPairs(config.AssetPairs...)
 	payload.OptInformations(config.Information)
@@ -75,7 +75,7 @@ func (c *Client) AssetPairs(config AssetPairsConfig) (*map[AssetPair]AssetPairsI
 		return nil, err
 	}
 
-	return &response, nil
+	return response, nil
 }
 
 type TickerInformationConfig struct {
@@ -87,7 +87,7 @@ type TickerInformationConfig struct {
 // Today's prices start at midnight UTC. Leaving the pair parameter blank will return tickers for all tradeable
 // assets on Kraken.
 // https://docs.kraken.com/rest/#tag/Market-Data/operation/getTradableAssetPairs
-func (c *Client) TickerInformation(config TickerInformationConfig) (*map[AssetPair]AssetTickerInfo, error) {
+func (c *Client) TickerInformation(config TickerInformationConfig) (map[AssetPair]AssetTickerInfo, error) {
 	payload := Payload{}
 	payload.OptAssetPairs(config.AssetPairs...)
 
@@ -97,7 +97,7 @@ func (c *Client) TickerInformation(config TickerInformationConfig) (*map[AssetPa
 		return nil, err
 	}
 
-	return &response, nil
+	return response, nil
 }
 
 type OHLCConfig struct {
@@ -115,7 +115,7 @@ type OHLCConfig struct {
 // Note: the last entry in the OHLC array is for the last, not-yet-committed frame and will always
 // be present, regardless of the value of `since`.
 // https://docs.kraken.com/rest/#operation/getOHLCData
-func (c *Client) OHLC(config OHLCConfig) (*[]OHLCData, time.Time, error) {
+func (c *Client) OHLC(config OHLCConfig) ([]OHLCData, time.Time, error) {
 	if config.AssetPair == "" {
 		return nil, time.Time{}, fmt.Errorf("AssetPair is required")
 	}
@@ -190,7 +190,7 @@ func (c *Client) OHLC(config OHLCConfig) (*[]OHLCData, time.Time, error) {
 		}
 	}
 
-	return &response, last, nil
+	return response, last, nil
 }
 
 type OrderBookConfig struct {
@@ -270,7 +270,7 @@ type RecentTradesConfig struct {
 // RecentTrades
 // Returns the last 1000 trades by default
 // https://docs.kraken.com/rest/#operation/getRecentTrades
-func (c *Client) RecentTrades(config RecentTradesConfig) (*[]TradeData, time.Time, error) {
+func (c *Client) RecentTrades(config RecentTradesConfig) ([]TradeData, time.Time, error) {
 	if config.AssetPair == "" {
 		return nil, time.Time{}, fmt.Errorf("AssetPair is required")
 	}
@@ -341,7 +341,7 @@ func (c *Client) RecentTrades(config RecentTradesConfig) (*[]TradeData, time.Tim
 			}
 		}
 	}
-	return &response, last, err
+	return response, last, err
 }
 
 type RecentSpreadsConfig struct {
@@ -354,7 +354,7 @@ type RecentSpreadsConfig struct {
 // RecentSpreads
 // Returns the last 1000 trades by default
 // https://docs.kraken.com/rest/#operation/getRecentSpreads
-func (c *Client) RecentSpreads(config RecentSpreadsConfig) (*[]SpreadData, time.Time, error) {
+func (c *Client) RecentSpreads(config RecentSpreadsConfig) ([]SpreadData, time.Time, error) {
 	if config.AssetPair == "" {
 		return nil, time.Time{}, fmt.Errorf("AssetPair is required")
 	}
@@ -401,5 +401,5 @@ func (c *Client) RecentSpreads(config RecentSpreadsConfig) (*[]SpreadData, time.
 			}
 		}
 	}
-	return &response, last, nil
+	return response, last, nil
 }
