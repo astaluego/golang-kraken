@@ -49,6 +49,16 @@ func (c *Client) WithAuthentification(key, secret string) {
 	c.apiSecret = secret
 }
 
+func (c *Client) SetTimezone(location string) error {
+	loc, err := time.LoadLocation(location)
+	if err != nil {
+		return nil
+	}
+	time.Local = loc
+
+	return nil
+}
+
 func (c *Client) doRequest(endpoint string, isPrivate bool, data url.Values, respType interface{}) error {
 	var (
 		req *http.Request

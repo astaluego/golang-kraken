@@ -20,6 +20,7 @@ import (
 
 func main() {
     client := kraken.New()
+    client.SetTimezone("UTC") // optional, configures the localization for time.Time Objects
 
     // Public calls
     time, err := client.ServerTime()
